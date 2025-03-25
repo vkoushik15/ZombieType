@@ -132,8 +132,14 @@ const SpeedTypingGame = () => {
     setTimeLeft(time); // Update the timer only
   
     if (isTyping) {
-      console.log(isTyping)
-      setIsTyping(true); // Ensure typing continues
+      // Reset the game only if typing was already in progress
+      setIsTyping(false);
+      
+      setTimeout(() => {
+        resetGame(); // Reset safely without infinite loop
+      }, 0);
+    } else {
+      // Keep cursor in correct position
       setTimeout(() => {
         const characters = document.querySelectorAll(".char");
         characters.forEach((char) => char.classList.remove("active"));
@@ -141,6 +147,7 @@ const SpeedTypingGame = () => {
           characters[charIndex].classList.add("active");
         }
       }, 0);
+      
       if (inputRef.current) {
         inputRef.current.focus();
       }
