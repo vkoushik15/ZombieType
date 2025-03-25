@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './speedTyping.css';
 import TypingArea from './typingArea.jsx';
+import ScreenshotShare from "./screenshotShare.jsx";
 
 const SpeedTypingGame = () => {
     const paragraphs = [
@@ -139,25 +140,31 @@ const SpeedTypingGame = () => {
 
     return (
         <div className="container">
-            <input type="text"
+            <input
+                type="text"
                 className="input-field"
                 value={inpFieldValue}
                 onChange={initTyping}
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
             />
-            {/* Render the TypingArea child component */}
-            <TypingArea
-                typingText={typingText}
-                inpFieldValue={inpFieldValue}
-                timeLeft={timeLeft}
-                mistakes={mistakes}
-                WPM={WPM}
-                CPM={CPM}
-                initTyping={initTyping}
-                handleKeyDown={handleKeyDown}
-                resetGame={resetGame}
-            />
+    
+            {/* Wrap results inside a div with ref */}
+            <div ref={resultRef}>
+                <TypingArea
+                    typingText={typingText}
+                    timeLeft={timeLeft}
+                    mistakes={mistakes}
+                    WPM={WPM}
+                    CPM={CPM}
+                    resetGame={resetGame}
+                    initTyping={initTyping}
+                    handleKeyDown={handleKeyDown}
+                />
+            </div>
+    
+            {/* Screenshot Feature */}
+            <ScreenshotShare resultRef={resultRef} />
         </div>
     );
 };
