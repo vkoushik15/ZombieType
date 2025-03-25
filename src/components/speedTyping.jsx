@@ -4,6 +4,8 @@ import TypingArea from './typingArea.jsx';
 import ScreenshotShare from "./screenshotShare.jsx";
 
 const SpeedTypingGame = () => {
+    const resultRef = useRef(null);
+    
     const paragraphs = [
         "A plant is one of the most important living things that develop on the Earth and is made up of stems, leaves, roots, and so on. The part of the plant that develops beneath the soil is referred to as the root, while the part that grows outside the soil is known as the shoot. The shoot consists of stems, branches, leaves, fruits, and flowers. Plants are made up of six main parts: roots, stems, leaves, flowers, fruits, and seeds.",
         "The root is the part of the plant that grows in the soil. The primary root emerges from the embryo, and its main function is to provide stability to the plant and absorb mineral salts from the soil for various metabolic processes. There are three types of roots: Tap Root, Adventitious Root, and Lateral Root. The roots arise from different parts of the plant and not from the rhizomes.",
