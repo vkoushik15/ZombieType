@@ -23,14 +23,14 @@ const TypingArea = ({
         <p id="paragraph">{typingText}</p>
       </div>
       <div className="section2">
-        <button onClick={hanldeSetButton}>Set Time</button>
+        <button onClick={hanldeSetButton} style={{ background: '#4299e1' }}>Set Time</button>
         <ul className="resultDetails">
           <li className="time">Time Left: {timeLeft}s</li>
           <li className="mistakes">Mistakes: {mistakes}</li>
           <li className="wpm">WPM: {WPM}</li>
           <li className="cpm">CPM: {CPM.toFixed(2)}</li>
         </ul>
-        <button onClick={resetGame}>Reset</button>
+        <button onClick={resetGame} style={{ background: '#e53e3e' }}>Reset</button>
       </div>
     </div>
   );
