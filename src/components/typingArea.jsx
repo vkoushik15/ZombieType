@@ -12,16 +12,21 @@ const TypingArea = ({
   handleKeyDown,
   resetGame,
 }) => {
+  const { setIsOpen } = useTime();
+  const hanldeSetButton = () => {
+    setIsOpen(true);
+  };
 
-    const { setIsOpen } = useTime();
-    const hanldeSetButton = () => {
-      setIsOpen(true);
-    };
   return (
     <div className="typing-area">
       <div className="section1">
-        <p id="paragraph">{typingText}</p>
+        {timeLeft > 0 ? (
+          <p id="paragraph">{typingText}</p>
+        ) : (
+          <p id="time-over">Time Over</p>
+        )}
       </div>
+
       <div className="section2">
         <button onClick={hanldeSetButton}>Set Time</button>
         <ul className="resultDetails">
