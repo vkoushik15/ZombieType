@@ -1,5 +1,6 @@
 import React from "react";
 import { useTime } from "../context/timeContext";
+import ScreenshotShare from "./screenshotShare.jsx";
 
 const TypingArea = ({
   typingText,
@@ -25,12 +26,16 @@ const TypingArea = ({
       <div className="section2">
         <button onClick={hanldeSetButton}>Set Time</button>
         <ul className="resultDetails">
-          <li className="time">Time Left: {timeLeft}s</li>
+          {/* <li className="time">Time Left: {timeLeft}s</li>
           <li className="mistakes">Mistakes: {mistakes}</li>
           <li className="wpm">WPM: {WPM}</li>
-          <li className="cpm">CPM: {CPM.toFixed(2)}</li>
+          <li className="cpm">CPM: {CPM.toFixed(2)}</li> */}
+          <li>⏳ Time Left: {timeLeft}s</li>
+          <li>❌ Mistakes: {mistakes}</li>
+          <li>⚡ WPM: {WPM}</li>
+          <li>🎯 CPM: {CPM.toFixed(2)}</li>
         </ul>
-        <button onClick={resetGame}>Reset</button>
+        <button onClick={resetGame} className="reset-btn">Reset</button>
       </div>
     </div>
   );
