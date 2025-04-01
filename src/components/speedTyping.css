@@ -141,3 +141,24 @@ button.btn:hover {
     margin-top: 10px;
   }
 }
+
+.screenshot-share {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.screenshot-btn, .share-btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+}
+
+.screenshot-btn {
+  background-color: #4caf50;
+  color: white;
+}
