@@ -24,7 +24,7 @@ const TypingArea = ({
         <p id="paragraph">{typingText}</p>
       </div>
       <div className="section2">
-        <button onClick={hanldeSetButton}>Set Time</button>
+        <button onClick={hanldeSetButton} style={{ background: '#4299e1' }}>Set Time</button>
         <ul className="resultDetails">
           {/* <li className="time">Time Left: {timeLeft}s</li>
           <li className="mistakes">Mistakes: {mistakes}</li>
@@ -35,7 +35,7 @@ const TypingArea = ({
           <li>⚡ WPM: {WPM}</li>
           <li>🎯 CPM: {CPM.toFixed(2)}</li>
         </ul>
-        <button onClick={resetGame} className="reset-btn">Reset</button>
+        <button onClick={resetGame} style={{ background: '#e53e3e' }} className="reset-btn">Reset</button>
       </div>
     </div>
   );
