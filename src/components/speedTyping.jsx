@@ -6,12 +6,16 @@ import "./speedTyping.css";
 import TypingArea from "./typingArea.jsx";
 import { useTime } from "../context/timeContext.js";
 import Pop from "./pop.jsx";
+
 import axios from "axios";
 
 const SpeedTypingGame = () => {
   const { isOpen, time } = useTime();
   const [paragraphs, setParagraphs] = useState([]);
   const [typingText, setTypingText] = useState([]);
+
+
+
   const [inpFieldValue, setInpFieldValue] = useState("");
   const maxTime = 60;
   const [timeLeft, setTimeLeft] = useState(maxTime);
@@ -179,7 +183,7 @@ const SpeedTypingGame = () => {
   }, [isTyping, timeLeft]);
 
   return (
-    <div className="container">
+    <div className="container" ref={resultRef}>
       <input
         type="text"
         className="input-field"
@@ -199,7 +203,9 @@ const SpeedTypingGame = () => {
         handleKeyDown={handleKeyDown}
         resetGame={resetGame}
       />
+
       {isOpen && <Pop inputRef={inputRef} />}
+
     </div>
   );
 };
