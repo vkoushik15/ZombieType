@@ -129,39 +129,43 @@ const SpeedTypingGame = () => {
   // Reset the game
   const resetGame = () => {
     setIsTyping(false);
-    setTimeLeft(maxTime);
+    setTimeLeft(time);
     setCharIndex(0);
     setMistakes(0);
     setTypingText([]);
     setCPM(0);
     setWPM(0);
-
     const characters = document.querySelectorAll(".char");
     characters.forEach((span) => {
-      span.classList.remove("correct", "wrong", "active");
+      span.classList.remove("correct");
+      span.classList.remove("wrong");
+      span.classList.remove("active");
     });
-
+    characters[0].classList.add("active");
     loadParagraph();
   };
-
-  // Update timer from context
   useEffect(() => {
-    setTimeLeft(time);
+    setTimeLeft(time); // Update the timer only
+  
     if (isTyping) {
       setIsTyping(false);
-      setTimeout(resetGame, 0);
+      
+      setTimeout(() => {
+        resetGame(); // Reset safely without infinite loop
+      }, 0);
     } else {
       setTimeout(() => {
         const characters = document.querySelectorAll(".char");
         characters.forEach((char) => char.classList.remove("active"));
         if (characters[charIndex]) characters[charIndex].classList.add("active");
       }, 0);
-
-      if (inputRef.current) inputRef.current.focus();
+      
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   }, [time]);
-
-  // Load a paragraph once data is available
+  
   useEffect(() => {
     if (paragraphs.length > 0) loadParagraph();
   }, [paragraphs]);
@@ -169,17 +173,24 @@ const SpeedTypingGame = () => {
   // Timer countdown
   useEffect(() => {
     let interval;
+
     if (isTyping && timeLeft > 0) {
       interval = setInterval(() => {
-        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+        setTimeLeft((prevTimeLeft) => {
+          if (prevTimeLeft <= 1) {
+            clearInterval(interval);
+            setIsTyping(false);
+            return 0;
+          }
+          return prevTimeLeft - 1;
+        });
         setCPM(calculateCPM(charIndex, mistakes, timeLeft));
         setWPM(calculateWPM(charIndex, mistakes, timeLeft));
       }, 1000);
-    } else if (timeLeft === 0) {
-      clearInterval(interval);
-      setIsTyping(false);
     }
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [isTyping, timeLeft]);
 
   return (
