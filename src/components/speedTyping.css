@@ -155,47 +155,129 @@ button.btn:hover {
   transform: translateY(-1px);
 }
 
-@media screen and (max-width: 550px) {
-  body {
-    flex-direction: column;
+
+
+/* Tablet and smaller desktop screens */
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+    padding: 1.5rem;
   }
 
-  .container {
-    width: 95%;
-    padding: 20px;
+  .section {
+    padding: 1.5rem;
   }
-  .section2 {
-    flex-direction: column;
+
+  span {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile devices - landscape */
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 1rem;
   }
 
   .section2 ul {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .section2 ul li {
+    flex: 1 1 calc(50% - 20px);
+    min-width: 120px;
+  }
+
+  .screenshot-share {
+    flex-wrap: wrap;
+  }
+
+  .screenshot-btn, .share-btn {
+    flex: 1 1 calc(50% - 5px);
+    justify-content: center;
+  }
+}
+
+/* Mobile devices - portrait */
+@media screen and (max-width: 480px) {
+  .container {
     width: 100%;
-    justify-content: space-between;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .section {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .section1 {
+    padding: 1rem;
+  }
+
+  .section2 ul li {
+    flex: 1 1 100%;
+    margin: 5px 0;
+  }
+
+  span {
+    font-size: 0.9rem;
+  }
+
+  .section2 ul li p {
+    font-size: 11px;
+  }
+
+  .section2 ul li span {
+    font-size: 1rem;
   }
 
   button.btn {
-    width: 100%;
-    margin-top: 10px;
+    padding: 0.6rem 1.2rem;
+    font-size: 14px;
+  }
+
+  .screenshot-btn, .share-btn {
+    flex: 1 1 100%;
+    margin: 5px 0;
+  }
+
+  #time-over {
+    font-size: 2rem;
   }
 }
 
-.screenshot-share {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
+/* Handle very small screens */
+@media screen and (max-width: 320px) {
+  .section {
+    padding: 0.8rem;
+    margin-top: 300px;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+
+  .section2 ul li p {
+    font-size: 10px;
+  }
+
+  .section2 ul li span {
+    font-size: 0.9rem;
+  }
+  
 }
 
-.screenshot-btn, .share-btn {
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border-radius: 5px;
-}
+/* Handle height-based media queries for better vertical spacing */
+@media screen and (max-height: 700px) {
+  .container {
+    margin: 10px 0;
+  }
 
-.screenshot-btn {
-  background-color: #4caf50;
-  color: white;
+  .section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
 }
