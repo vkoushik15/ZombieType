@@ -12,6 +12,7 @@ const TypingArea = ({
   initTyping,
   handleKeyDown,
   resetGame,
+  TryAgain
 }) => {
   const { setIsOpen } = useTime();
   const hanldeSetButton = () => {
@@ -41,7 +42,9 @@ const TypingArea = ({
           <li>🎯 CPM: {CPM.toFixed(2)}</li>
         </ul>
         <button onClick={resetGame} style={{ background: '#e53e3e' }} className="reset-btn">Reset</button>
+       
       </div>
+      <button onClick={TryAgain} style={{ background: '#38a169' }} className="reset-btn">Try Again</button>
     </div>
   );
 };

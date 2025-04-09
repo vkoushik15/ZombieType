@@ -11,6 +11,7 @@ import axios from "axios";
 
 const SpeedTypingGame = () => {
   const { isOpen, time } = useTime();
+  const resultRef = useRef(null)
   const [paragraphs, setParagraphs] = useState([]);
   const [typingText, setTypingText] = useState([]);
 
@@ -32,6 +33,7 @@ const SpeedTypingGame = () => {
       try {
         const response = await axios.get("http://localhost:3000/para/getpara");
         setParagraphs(response.data.map(item => item.para)); // Extract only `para` field
+        
       } catch (error) {
         console.error("Error fetching paragraphs:", error);
       }
@@ -106,7 +108,29 @@ const SpeedTypingGame = () => {
       setIsTyping(false);
     }
   };
+  const TryAgain =()=>{
+    setIsTyping(false);
+  setTimeLeft(time); // Reset timer from the context
+  setCharIndex(0);
+  setMistakes(0);
+  setCPM(0);
+  setWPM(0);
+  setInpFieldValue(""); // Clear input field value
 
+  // Clear previous character classes
+  const characters = document.querySelectorAll(".char");
+  characters.forEach((span) => {
+    span.classList.remove("correct", "wrong", "active");
+  });
+
+  // Load a fresh paragraph
+  characters[0].classList.add("active");
+  loadParagraph();
+
+  // Refocus on input field
+  if (inputRef.current) inputRef.current.focus();
+
+  }
   // Handle backspace
   const handleKeyDown = (event) => {
     const characters = document.querySelectorAll(".char");
@@ -128,6 +152,7 @@ const SpeedTypingGame = () => {
 
   // Reset the game
   const resetGame = () => {
+    console.log("restting game")
     setIsTyping(false);
     setTimeLeft(time);
     setCharIndex(0);
@@ -145,13 +170,13 @@ const SpeedTypingGame = () => {
     loadParagraph();
   };
   useEffect(() => {
-    setTimeLeft(time); // Update the timer only
+    setTimeLeft(time); 
   
     if (isTyping) {
       setIsTyping(false);
       
       setTimeout(() => {
-        resetGame(); // Reset safely without infinite loop
+        resetGame(); 
       }, 0);
     } else {
       setTimeout(() => {
@@ -213,6 +238,7 @@ const SpeedTypingGame = () => {
         initTyping={initTyping}
         handleKeyDown={handleKeyDown}
         resetGame={resetGame}
+        TryAgain ={TryAgain}
       />
 
       {isOpen && <Pop inputRef={inputRef} />}
